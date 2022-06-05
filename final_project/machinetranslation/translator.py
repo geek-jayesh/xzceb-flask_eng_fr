@@ -1,4 +1,4 @@
-import json
+"""This code translates english to french text and Vice Versa."""
 import os
 
 from ibm_watson import LanguageTranslatorV3
@@ -12,7 +12,7 @@ url = os.environ['url']
 
 authenticator = IAMAuthenticator(apikey)
 language_translator = LanguageTranslatorV3(
-    version = "2018-05-01", 
+    version = "2018-05-01",
     authenticator = authenticator
 )
 language_translator.set_service_url(url)
@@ -32,11 +32,8 @@ def french_to_english(french_text):
     """ This function translates French To English"""
 
     english_translation = language_translator.translate(
-        french_text, 
+        french_text,
         model_id = "fr-en"
         ).get_result()
 
     return english_translation['translations'][0]['translation']
-
-
-print(english_to_french(None))
